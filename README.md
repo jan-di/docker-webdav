@@ -11,7 +11,7 @@ Even though the image is designed to be used behind a reverse proxy, the webserv
 
 You can use the following environment variables to configure the image at runtime:
 
-`WEBDAV_USERNAME` Name of WebDAV user
-`WEBDAV_PASSWORD` Password of WebDAV user
+- `WEBDAV_USERNAME` Name of WebDAV user
+- `WEBDAV_PASSWORD` Password of WebDAV user
 
 See also the parameters from the upstream image [linuxserver/nginx](https://github.com/linuxserver/docker-nginx#parameters).

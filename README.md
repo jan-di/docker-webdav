@@ -15,3 +15,38 @@ You can use the following environment variables to configure the image at runtim
 - `WEBDAV_PASSWORD` Password of WebDAV user
 
 See also the parameters from the upstream image [linuxserver/nginx](https://github.com/linuxserver/docker-nginx#parameters).
+
+## Example Configuration
+
+Docker-compose file with webdav server behind traefik reverse proxy:
+Make sure you also allow insecure certificates in traefik for internal connections.
+
+```yml
+version: '3.8'
+
+services: 
+  web:
+    image: jandi/webdav
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.keedav.entryPoints=https
+      - traefik.http.routers.keedav.rule=Host(`domain.example`)
+      - traefik.http.routers.keedav.tls=true
+      - traefik.http.services.keedav.loadbalancer.server.scheme=https
+      - traefik.http.services.keedav.loadbalancer.server.port=443
+    networks:
+      - ~traefik
+    volumes:
+      - ./data/web:/var/www
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+      - WEBDAV_USERNAME=username
+      - WEBDAV_PASSWORD=super-secret-password
+    restart: unless-stopped
+
+networks:
+  ~traefik:
+    external: true
+```

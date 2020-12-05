@@ -43,7 +43,6 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v2
         with:
-          build-args: FROM_TAG=7.4-apache
           push: true
           tags: ${{ env.BASE_TAG }}:latest
           cache-from: type=registry,ref=${{ env.BASE_TAG }}${{ steps.cache_buster.outputs.suffix }}

@@ -2,10 +2,8 @@ FROM ghcr.io/linuxserver/nginx
 
 # add packages via apk
 RUN set -eux; \
-    echo "@edge http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories; \
     apk add --no-cache \
-        apache2-utils \
-        nginx-mod-http-dav-ext@edge
+        apache2-utils
 
 # customize nginx
 COPY files/vhost.conf /config/nginx/site-confs/default

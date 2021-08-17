@@ -31,11 +31,11 @@ services:
     image: jandi/webdav
     labels:
       - traefik.enable=true
-      - traefik.http.routers.keedav.entryPoints=https
-      - traefik.http.routers.keedav.rule=Host(`domain.example`)
-      - traefik.http.routers.keedav.tls=true
-      - traefik.http.services.keedav.loadbalancer.server.scheme=https
-      - traefik.http.services.keedav.loadbalancer.server.port=443
+      - traefik.http.routers.webdav.entryPoints=https
+      - traefik.http.routers.webdav.rule=Host(`domain.example`)
+      - traefik.http.routers.webdav.tls=true
+      - traefik.http.services.webdav.loadbalancer.server.scheme=https
+      - traefik.http.services.webdav.loadbalancer.server.port=443
     networks:
       - ~traefik
     volumes:

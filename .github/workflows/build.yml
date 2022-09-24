@@ -1,44 +1,70 @@
 name: Build & Publish Docker Image
 
 env:
-  DOCKERHUB_TAG: 'jandi/webdav'
+  DOCKERHUB_TAG: "docker.io/jandi/webdav"
+  GITHUB_TAG: "ghcr.io/jan-di/webdav"
 
 on:
   push:
-    branches:    
+    branches:
       - main
+  pull_request:
+    branches:
+      - "main"
 
 jobs:
   main:
     name: Build Docker Image
     runs-on: ubuntu-latest
     steps:
-      -
-        name: Checkout
+      - name: Checkout
         uses: actions/checkout@v3
-      -
-        name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
-      -
-        name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-      - 
-        name: Login to DockerHub
-        uses: docker/login-action@v2 
+
+      - name: Docker Metadata
+        id: docker_meta
+        uses: docker/metadata-action@v4
         with:
+          images: |
+            ${{ env.DOCKERHUB_TAG }}
+            ${{ env.GITHUB_TAG }}
+          tags: |
+            type=raw,value=latest
+
+      - name: Login to DockerHub
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v2
+        with:
+          registry: docker.io
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
-      -
-        name: Build Image
+
+      - name: Login to GitHub Container Registry
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Build Image
         id: docker_build
         uses: docker/build-push-action@v3
         with:
-          push: true
-          tags: ${{ env.DOCKERHUB_TAG }}:latest
-          cache-from: type=registry,ref=${{ env.DOCKERHUB_TAG }}
-          cache-to: type=inline
+          context: .
+          file: ./Dockerfile
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.docker_meta.outputs.tags }}
+          labels: ${{ steps.docker_meta.outputs.labels }}
           platforms: linux/amd64,linux/arm/v7,linux/arm64
-      -
-        name: Image digests
+          cache-from: type=registry,ref=${{ env.GITHUB_TAG }}:latest
+          cache-to: type=inline
+
+      - name: Image digests
         run: |
           echo image digest: ${{ steps.docker_build.outputs.digest }}

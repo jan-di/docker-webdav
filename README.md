@@ -4,7 +4,7 @@ Docker image of a nginx powered webdav server for my personal use. Feel free to 
 
 ## Usage
 
-Specify `WEBDAV_USERNAME` and `WEBDAV_PASSWORD` as environment variables or create a .htpasswd file by yourself and put it to `/config/nginx/.htpasswd`.
+Specify `WEBDAV_USERNAME` and `WEBDAV_PASSWORD` as environment variables or create a `.htpasswd` file by yourself and put it to `/config/nginx/.htpasswd`.
 Even though the image is designed to be used behind a reverse proxy, the webserver must be accessed through HTTPS to prevent issues with certain WebDAV methods (e.g. MOVE)
 
 ## Parameters

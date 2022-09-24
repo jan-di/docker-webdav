@@ -11,7 +11,7 @@ RUN set -eux; \
     rm -rf /var/www/*
 
 # docker entrypoint
-COPY files/create-htpasswd.sh /config/custom-cont-init.d/
+COPY files/create-htpasswd.sh /custom-cont-init.d/
 
 # exposed ports & volumes
 EXPOSE 443

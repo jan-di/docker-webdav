@@ -5,13 +5,12 @@
 ![](https://flat.badgen.net/docker/pulls/jandi/webdav)
 ![](https://flat.badgen.net/docker/stars/jandi/webdav)
 
-Docker image of a nginx powered webdav server for my personal use. Feel free to use, but be aware that backwards compatability is not assured and things can break at any time.
+Docker image of a nginx powered webdav server for my personal use. This will implement a [Class 2](https://stackoverflow.com/questions/58900793/what-is-a-level-2-webdav-server) compliant WebDAV server. Feel free to use, but be aware that backwards compatability is not assured and things can break at any time.
 
 Registry | Image | Tags
  --- | --- | ---
 Dockerhub | `docker.io/jandi/webdav` | [Details](https://hub.docker.com/r/jandi/webdav/tags)
 GitHub Container Registry | `ghcr.io/jan-di/webdav` | [Details](https://github.com/jan-di/docker-webdav/pkgs/container/webdav)
-
 
 ## Usage
 

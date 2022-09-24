@@ -1,6 +1,17 @@
 # docker-webdav
 
+![](https://flat.badgen.net/docker/size/jandi/webdav/latest)
+![](https://flat.badgen.net/docker/layers/jandi/webdav/latest)
+![](https://flat.badgen.net/docker/pulls/jandi/webdav)
+![](https://flat.badgen.net/docker/stars/jandi/webdav)
+
 Docker image of a nginx powered webdav server for my personal use. Feel free to use, but be aware that backwards compatability is not assured and things can break at any time.
+
+Registry | Image | Tags
+ --- | --- | ---
+Dockerhub | `docker.io/jandi/webdav` | [Details](https://hub.docker.com/r/jandi/webdav/tags)
+GitHub Container Registry | `ghcr.io/jan-di/webdav` | [Details](https://github.com/jan-di/docker-webdav/pkgs/container/webdav)
+
 
 ## Usage
 
@@ -28,7 +39,7 @@ version: '3.8'
 
 services: 
   web:
-    image: jandi/webdav
+    image: docker.io/jandi/webdav
     labels:
       - traefik.enable=true
       - traefik.http.routers.webdav.entryPoints=https

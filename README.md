@@ -46,6 +46,7 @@ services:
       - traefik.http.routers.webdav.tls=true
       - traefik.http.services.webdav.loadbalancer.server.scheme=https
       - traefik.http.services.webdav.loadbalancer.server.port=443
+      - traefik.http.services.webdav.loadbalancer.serverstransport=insecureskipverify@file # See https://doc.traefik.io/traefik/routing/services/#insecureskipverify
     networks:
       - ~traefik
     volumes:
@@ -61,4 +62,14 @@ services:
 networks:
   ~traefik:
     external: true
+```
+
+Skip the verification of the self signed nginx cert in global Treafik configuration (eg. traefik_dynamic.yml). <br />
+See [doc.traefik.io -> insecureSkipVerify](https://doc.traefik.io/traefik/routing/services/#insecureskipverify)
+
+```yml
+http:
+  serversTransports:
+    insecureskipverify:
+      insecureSkipVerify: true
 ```

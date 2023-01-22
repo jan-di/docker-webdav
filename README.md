@@ -1,4 +1,4 @@
-# docker-webdav
+# Dockered WebDAV Server
 
 ![](https://flat.badgen.net/docker/size/jandi/webdav/latest)
 ![](https://flat.badgen.net/docker/layers/jandi/webdav/latest)

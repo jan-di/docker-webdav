@@ -8,7 +8,8 @@ RUN set -eux; \
 # customize nginx
 COPY files/vhost.conf /config/nginx/site-confs/default
 RUN set -eux; \
-    rm -rf /var/www/*
+    rm -rf /var/www/*; \
+    chmod -R a+rwX /var/www
 
 # docker entrypoint
 COPY files/create-htpasswd.sh /custom-cont-init.d/

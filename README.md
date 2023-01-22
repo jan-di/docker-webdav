@@ -28,6 +28,13 @@ Name | Description
 
 See also the parameters from the upstream image [linuxserver/nginx](https://github.com/linuxserver/docker-nginx#parameters).
 
+## Endpoints
+
+Endpoint | Auth. req. | Description
+--- | --- | ---
+`/dav` | yes | WebDAV
+`/health` | no | Healthchecks, always return `200`
+
 ## Example Configuration
 
 Docker-compose file with webdav server behind traefik reverse proxy:

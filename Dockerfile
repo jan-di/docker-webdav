@@ -1,4 +1,4 @@
-FROM ghcr.io/linuxserver/nginx:1.26.2
+FROM ghcr.io/linuxserver/nginx:1.28.0
 
 # add packages via apk
 RUN set -eux; \

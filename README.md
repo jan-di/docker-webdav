@@ -43,7 +43,7 @@ Make sure you also allow insecure certificates in traefik for internal connectio
 ```yml
 version: '3.8'
 
-services: 
+services:
   web:
     image: docker.io/jandi/webdav
     labels:

@@ -2,7 +2,7 @@
 
 ## Local Development
 
-Build Image 
+Build Image
 
 `docker build -t localhost/docker-webdav .`
 

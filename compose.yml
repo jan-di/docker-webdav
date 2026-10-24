@@ -1,0 +1,19 @@
+# Local test setup, e.g. for connecting from macOS Finder:
+#   docker compose up --build
+#   Finder -> Go -> Connect to Server (Cmd+K): https://localhost:8443/dav
+#   User: test / Password: test
+# The server uses a self-signed certificate; Finder asks to trust it on first connect.
+services:
+  webdav:
+    build: .
+    ports:
+      - "8443:443/tcp"
+      - "8443:443/udp"
+    volumes:
+      - ./data:/var/www/dav
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+      - WEBDAV_USERNAME=test
+      - WEBDAV_PASSWORD=test

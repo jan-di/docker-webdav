@@ -1,4 +1,4 @@
-FROM ghcr.io/linuxserver/nginx:1.30.4
+FROM ghcr.io/linuxserver/nginx:1.30.6
 
 # add packages via apk
 RUN set -eux; \
@@ -25,5 +25,6 @@ RUN chmod +x /custom-cont-init.d/*.sh
 RUN rm -r /etc/s6-overlay/s6-rc.d/svc-php-fpm /etc/s6-overlay/s6-rc.d/user/contents.d/svc-php-fpm
 
 # exposed ports & volumes
-EXPOSE 443
+EXPOSE 443/tcp
+EXPOSE 443/udp
 VOLUME /var/www/dav

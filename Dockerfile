@@ -19,6 +19,7 @@ RUN set -eux; \
 
 # docker entrypoint
 COPY files/create-htpasswd.sh /custom-cont-init.d/
+RUN chmod +x /custom-cont-init.d/*.sh
 
 # disable php-fpm, not used
 RUN rm -r /etc/s6-overlay/s6-rc.d/svc-php-fpm /etc/s6-overlay/s6-rc.d/user/contents.d/svc-php-fpm
